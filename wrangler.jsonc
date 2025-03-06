@@ -1,0 +1,29 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "url-shortner",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-02-04",
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "PASSWORD": "<YOUR_PASSWORD>",
+    "PASSWORD_REQUIRE": true,
+    "HOST_WHITELIST": [
+      "example.com",
+      "coderxi.com"
+    ],
+    "KEY_MIN_LENGTH": 6,
+    "KEY_REMOVE": false
+  },
+  "kv_namespaces": [
+    {
+      "binding": "URLS",
+      "id": "<YOUR_KV_NAMESPACE_ID>"
+    }
+  ]
+}

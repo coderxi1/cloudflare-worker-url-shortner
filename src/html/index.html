@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+  
+    body {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #F0F2F4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #4C4948
+    }
+  
+    .card {
+      position: relative;
+      border-radius: .5rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 555px;
+      background-color: #fff;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, .1), 0 4px 6px rgba(0, 0, 0, .05);
+      transition: box-shadow .3s ease
+    }
+  
+    .card:hover {
+      box-shadow: 0 20px 25px rgba(0, 0, 0, .15), 0 10px 10px rgba(0, 0, 0, .05)
+    }
+  
+    .card h1 {
+      text-align: center;
+      color: #666;
+      font-size: 1.25rem;
+      margin-bottom: 1rem
+    }
+  
+    .card>div {
+      margin-bottom: .5rem
+    }
+  
+    label {
+      display: block;
+      margin: .5rem 0;
+      font-weight: 600;
+      color: #333
+    }
+  
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      padding: .75rem;
+      border: 1px solid #ddd;
+      border-radius: .25rem;
+      background-color: #F9F9F9;
+      font-size: 1rem;
+      transition: border-color .2s ease-in-out
+    }
+  
+    input[type=text]:focus,
+    input[type=password]:focus {
+      border-color: #007BFF;
+      outline: none
+    }
+  
+    .btns {
+      margin-top: 1rem;
+      display: flex
+    }
+  
+    .settings-btn {
+      cursor: pointer;
+      border-radius: .25rem;
+      background: transparent;
+      padding: 2px;
+      border: dotted 1px #999;
+      color: #999;
+      margin-right: .5rem;
+      padding: 0 12px
+    }
+  
+    .settings-btn svg {
+      width: 24px
+    }
+  
+    .settings-btn:hover {
+      color: #007BFF;
+      border-color: #007BFF
+    }
+  
+    .settings-btn.active {
+      color: red;
+      border-color: red
+    }
+  
+    .shorten-btn {
+      width: 100%;
+      padding: .75rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: .25rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color .2s ease-in-out
+    }
+  
+    .shorten-btn:active {
+      background-color: #00408d
+    }
+  
+    .settings-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease
+    }
+  
+    .settings-panel.show {
+      max-height: 300px
+    }
+    .expiration-group {
+      display: flex;
+    }
+    .expiration-group div {
+      display: flex;
+      margin-right: 1em;
+      align-items: center;
+      user-select: none;
+    }
+    .expiration-group input[type="radio"] {
+      margin-right: .5em;
+    }
+    input[type=number] {
+      outline: 0;
+      border: 1px solid #ddd;
+      padding-left: .2em;
+      margin-left: .2em;
+      width: 50px;
+      height: 28px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #191919;
+    }
+    .card {
+      background-color: #1E1E1F;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=number] {
+      background: #1a1a1a;
+      border-color: #333;
+      color: #fff;
+    }
+    .settings-btn {
+      border-color: #444;
+    }
+    .card h1,label {
+      color: #999;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Shorten URL</h1>
+    <a style="position:absolute;top:10px;right:10px;color:#fff;" href="https://github.com/coderxi1/cloudflare-worker-url-shortner" title="plz give a star (:3) meow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><g fill="none"><rect width="256" height="256" fill="#F4F2ED" rx="60"/><path fill="#161614" d="M128.001 30C72.779 30 28 74.77 28 130.001c0 44.183 28.653 81.667 68.387 94.89c4.997.926 6.832-2.169 6.832-4.81c0-2.385-.093-10.262-.136-18.618c-27.82 6.049-33.69-11.799-33.69-11.799c-4.55-11.559-11.104-14.632-11.104-14.632c-9.073-6.207.684-6.079.684-6.079c10.042.705 15.33 10.305 15.33 10.305c8.919 15.288 23.394 10.868 29.1 8.313c.898-6.464 3.489-10.875 6.349-13.372c-22.211-2.529-45.56-11.104-45.56-49.421c0-10.918 3.906-19.839 10.303-26.842c-1.039-2.519-4.462-12.69.968-26.464c0 0 8.398-2.687 27.508 10.25c7.977-2.215 16.531-3.326 25.03-3.364c8.498.038 17.06 1.149 25.051 3.365c19.087-12.939 27.473-10.25 27.473-10.25c5.443 13.773 2.019 23.945.98 26.463c6.412 7.003 10.292 15.924 10.292 26.842c0 38.409-23.394 46.866-45.662 49.341c3.587 3.104 6.783 9.189 6.783 18.519c0 13.38-.116 24.149-.116 27.443c0 2.661 1.8 5.779 6.869 4.797C199.383 211.64 228 174.169 228 130.001C228 74.771 183.227 30 128.001 30M65.454 172.453c-.22.497-1.002.646-1.714.305c-.726-.326-1.133-1.004-.898-1.502c.215-.512.999-.654 1.722-.311c.727.326 1.141 1.01.89 1.508m4.919 4.389c-.477.443-1.41.237-2.042-.462c-.654-.697-.777-1.629-.293-2.078c.491-.442 1.396-.235 2.051.462c.654.706.782 1.631.284 2.078m3.374 5.616c-.613.426-1.615.027-2.234-.863c-.613-.889-.613-1.955.013-2.383c.621-.427 1.608-.043 2.236.84c.611.904.611 1.971-.015 2.406m5.707 6.504c-.548.604-1.715.442-2.57-.383c-.874-.806-1.118-1.95-.568-2.555c.555-.606 1.729-.435 2.59.383c.868.804 1.133 1.957.548 2.555m7.376 2.195c-.242.784-1.366 1.14-2.499.807c-1.13-.343-1.871-1.26-1.642-2.052c.235-.788 1.364-1.159 2.505-.803c1.13.341 1.871 1.252 1.636 2.048m8.394.932c.028.824-.932 1.508-2.121 1.523c-1.196.027-2.163-.641-2.176-1.452c0-.833.939-1.51 2.134-1.53c1.19-.023 2.163.639 2.163 1.459m8.246-.316c.143.804-.683 1.631-1.864 1.851c-1.161.212-2.236-.285-2.383-1.083c-.144-.825.697-1.651 1.856-1.865c1.183-.205 2.241.279 2.391 1.097"/></g></svg></a>
+
+    <input type="text" id="url-input" placeholder="Example: https://coderxi.com/url-shortener-with-cloudflare-worker"/>
+
+    <div class="settings-panel" id="settings-panel">
+      <div>
+        <label for="password-input">Password</label>
+        <input type="password" id="password-input" placeholder="Enter password to ignore host whitelist and custom more settings"/>
+      </div>
+      <div>
+        <label for="key-input">Custom Key</label>
+        <input type="text" id="key-input" placeholder="Short url pathname will be /{key}"/>
+      </div>
+      <div>
+        <label>Expiration</label>
+        <div class="expiration-group">
+          <div>
+            <input type="radio" id="exp-1d" name="expiration" value="1" checked>
+            <label for="exp-1d">1 Day</label>
+          </div>
+          <div>
+            <input type="radio" id="exp-7d" name="expiration" value="7">
+            <label for="exp-7d">7 Days</label>
+          </div>
+          <div>
+            <input type="radio" id="exp-custom" name="expiration" value="custom">
+            <label for="exp-custom">Custom
+              <input type="number" id="custom-expiration-input" placeholder="Days" min="1" disabled/>
+            </label>
+            
+          </div>
+          <div>
+            <input type="radio" id="exp-forever" name="expiration" value="-1">
+            <label for="exp-forever">Forever</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btns">
+      <button type="button" class="settings-btn" id="settings-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M8.999 3.999a4.002 4.002 0 0 0 0 8.003a3.999 3.999 0 0 0 3.998-4.005A3.998 3.998 0 0 0 9 4zm0 10C6.329 13.999 1 15.332 1 17.997V20H12.08a6.233 6.233 0 0 1-.078-1.001c0-1.514.493-2.988 1.407-4.199c-1.529-.523-3.228-.801-4.41-.801zm8.99 0a.261.261 0 0 0-.25.21l-.19 1.319a4.091 4.091 0 0 0-.85.492l-1.24-.502a.265.265 0 0 0-.308.112l-1.001 1.729a.255.255 0 0 0 .059.322l1.06.83a3.95 3.95 0 0 0 0 .981l-1.06.83a.26.26 0 0 0-.059.318l1.001 1.729c.059.111.19.151.308.111l1.24-.497c.258.2.542.366.85.488l.19 1.318c.02.122.122.21.25.21h2.001c.122 0 .23-.088.25-.21l.19-1.318c.297-.132.59-.288.84-.488l1.25.497c.111.04.239 0 .313-.111l.996-1.729a.256.256 0 0 0-.059-.317l-1.07-.83c.02-.162.04-.323.04-.494c0-.171-.01-.328-.04-.488l1.06-.83c.087-.084.121-.21.059-.322l-.996-1.729a.263.263 0 0 0-.313-.113l-1.24.503c-.26-.2-.543-.37-.85-.492l-.19-1.32a.238.238 0 0 0-.24-.21M18.989 17.5c.83 0 1.5.669 1.5 1.499c0 .83-.67 1.498-1.5 1.498S17.49 19.83 17.49 19s.669-1.499 1.499-1.499z" fill="currentColor"/></svg>
+      </button>
+      <button type="button" class="shorten-btn" id="shorten-btn">Shorten</button>
+    </div>
+  </div>
+
+  <script>
+    const $ = (selector) => document.querySelector(selector);
+    const settingsBtn = $('#settings-btn');
+    const settingsPanel = $('#settings-panel');
+    settingsBtn.addEventListener('click', () => {
+      const show = settingsPanel.classList.toggle('show');
+      settingsBtn.classList.toggle('active')
+    });
+
+    const expirationInputEl = $('#custom-expiration-input')
+    const expirationRadioEls = document.querySelectorAll('input[name="expiration"]');
+    expirationRadioEls.forEach(radio => {radio.addEventListener('change', () => {
+      const disabled = expirationInputEl.disabled = radio.value !== 'custom'
+      if (disabled) expirationInputEl.value = ''
+    })});
+
+    const shortenBtn = $('#shorten-btn')
+    shortenBtn.addEventListener('click',saveUrl)
+    
+    async function saveUrl() {
+      shortenBtn.disabled = true
+      const params = {
+        url: $('#url-input').value,
+        key: $('#key-input').value,
+        password: $('#password-input').value,
+        expireDay:  $('input[name="expiration"]').value == 'custom' ? expirationInputEl.value : $('input[name="expiration"]:checked').value
+      }
+      try {
+        const resp = await fetch(location.origin, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(params)
+        });
+        const data = await resp.json();
+        shortenBtn.disabled = false
+        if (data.error) {
+          alert('Error: ' + data.error);
+        } else {
+          prompt('URL saved successfully with key: ' + data.key, location.origin + '/' + data.key)
+        }
+      } catch (e) {
+        console.error('Error occurred:', e);
+        alert('An error occurred while saving the URL.');
+      }
+    }
+  </script>
+</body>
+</html>
