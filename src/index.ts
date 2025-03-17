@@ -1,13 +1,18 @@
 import html_index from './html/index.html'
 import html_expired from './html/expired.html'
 import html_404 from './html/404.html'
+import html_redirect from './html/redirect.html'
 import Service from './service'
-import { responseJson, responseHtml, responseBlank, responseRedirect } from './utils'
+import { responseJson, responseHtml, responseBlank, responseRedirect, fillTemplate } from './utils'
 
 const service = new Service()
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
+    // static assets
+    const assets = await env.ASSETS.fetch(request.clone())
+    if (assets.ok) return assets
+    // main logic
     service.use(env)
     const method = request.method
     const path = new URL(request.url).pathname
@@ -26,9 +31,14 @@ export default {
       const key = path.slice(1)
       const {url, status} = await service.getUrl(key)
       switch (status) {
-        case 'normal': return responseRedirect(url!)
-        case 'expired': return responseHtml(html_expired)
-        case 'none': return responseHtml(html_404)
+        case 'normal': {
+          const host = new URL(url!).host
+          return env.MANUAL_DOMAINS.includes(host)
+           ?responseHtml(fillTemplate(html_redirect,{url,host}))
+           :responseRedirect(url!)
+        }
+        case 'expired': return responseHtml(fillTemplate(html_expired,{key}))
+        case 'none': return responseHtml(fillTemplate(html_404,{key}))
       }
     }
     return responseBlank()

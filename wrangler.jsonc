@@ -10,6 +10,10 @@
   "observability": {
     "enabled": true
   },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
   "vars": {
     "PASSWORD": "<YOUR_PASSWORD>",
     "PASSWORD_REQUIRE": true,
@@ -18,7 +22,10 @@
       "coderxi.com"
     ],
     "KEY_MIN_LENGTH": 6,
-    "KEY_REMOVE": false
+    "KEY_REMOVE": false,
+    "MANUAL_DOMAINS": [
+      "github.com"
+    ]
   },
   "kv_namespaces": [
     {

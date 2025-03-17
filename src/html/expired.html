@@ -1,20 +1,15 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expired - URL Shortener</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
 <body>
-  The url you visit is expired, please contact the administrator.
+  <div class="card">
+    <h1>Expired</h1>
+    <p>The requested URL <span style="color:red">/${key}</span> has expired on this server. If you need further assistance, please contact the website administrator.</p>
+  </div>
 </body>
-<style>
-  body {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: #191919;
-      color: #c9c9d7;
-    }
-  }
-</style>
+</html>

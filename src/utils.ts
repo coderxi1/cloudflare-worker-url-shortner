@@ -9,3 +9,9 @@ export const genRandomKey = (length: number) => {
   const $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'
   return Array.from({ length }, () => $chars.charAt(Math.floor(Math.random() * $chars.length))).join('')
 }
+
+export const fillTemplate = (template: string, props: Object) => {
+  let result = template
+  Object.entries(props).forEach(([k,v])=> result = result.replaceAll(`\$\{${k}\}`,v))
+  return result
+}
