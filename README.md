@@ -1,3 +1,5 @@
+[**简体中文**](https://github.com/coderxi1/cloudflare-worker-url-shortner/blob/master/README.zh.md)
+
 # ![](/public/favicon.ico) cloudflare-worker-url-shortner
 
 cloudflare-worker-url-shortner is a **serverless URL shortening service** built using **Cloudflare Workers**. It provides a simple and efficient way to shorten long URLs and manage redirects.
