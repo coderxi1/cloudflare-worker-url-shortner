@@ -1,4 +1,4 @@
-# cloudflare-worker-url-shortner
+# ![](/public/favicon.ico) cloudflare-worker-url-shortner
 
 cloudflare-worker-url-shortner is a **serverless URL shortening service** built using **Cloudflare Workers**. It provides a simple and efficient way to shorten long URLs and manage redirects.
 
@@ -54,6 +54,17 @@ cloudflare-worker-url-shortner is a **serverless URL shortening service** built 
    pnpm run deploy
    ```
 
+## Environment variables
+
+| Key               | Default Value     | Description |
+|------------------|-----------------|-------------|
+| `PASSWORD`       | `<YOUR_PASSWORD>` | The password for authentication. |
+| `PASSWORD_REQUIRE` | `true`          | If set to `true`, password **must** be entered to use all features. |
+| `HOST_WHITELIST`  | `["example.com", "coderxi.com"]` | A list of allowed hostnames. Only requests from these domains are accepted **unless a valid password is provided**. |
+| `KEY_MIN_LENGTH`  | `6`             | The minimum length required for the key. |
+| `KEY_REMOVE`      | `false`         | If set to `true`, the URL record will be **deleted** when expired. If `false`, the URL will **only be marked as expired** |
+| `MANUAL_DOMAINS`  | `["github.com"]` | URLs matching these domains will **not be automatically redirected**. A page will be displayed, requiring users to manually click to proceed. |
+
 ## API Usage
 
 ### Create a Short URL
@@ -63,7 +74,7 @@ cloudflare-worker-url-shortner is a **serverless URL shortening service** built 
 POST /
 Content-Type: application/json
 {
-  "url": "https://coderxi.com/url-shortener-with-cloudflare-worker",
+  "url": "https://coderxi.com/posts/url-shortener-with-cloudflare-worker",
   "password": "<YOUR_PASSWORD>",
   "key": "doc",
   "expireDay": 1
