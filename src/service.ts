@@ -37,7 +37,9 @@ export default class Service {
       let [ randomKey, len, times ] = [ '', KEY_MIN_LENGTH, 0 ]
       do {
         randomKey = genRandomKey(len)
-        assert(times++ > 3 && len++ > KEY_MIN_LENGTH + 3, 'too many random key generation attempts, please try again')
+        if (times++ > 3 && len++ > KEY_MIN_LENGTH + 3) {
+          throw new Error('too many random key generation attempts, please try again')
+        }
       } while ((await this.getUrl(randomKey)).url)
       key = randomKey
     }
