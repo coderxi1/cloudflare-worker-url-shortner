@@ -1,0 +1,88 @@
+{
+  "title": "Url Shortner",
+  "subtitle": {
+    "login": "登录",
+    "manual": "跳转",
+    "notfound": "页面未找到"
+  },
+  "enter": "确定",
+  "login": "登录",
+  "login_success": "登录成功",
+  "login_failed": "登录失败",
+  "isLogin": "已登录",
+  "logout": "退出登录",
+  "logout_confirm": "确定退出登录吗？",
+  "logout_finish": "已退出登录",
+  "notfound": {
+    "title": "页面未找到",
+    "tips": "请求的 URL <span style='color:red'>{path}</span> 在此服务器上未找到，请检查后再试。如果你认为这是一个错误，请联系网站管理员。"
+  },
+  "loginForm": {
+    "password": {
+      "placeholder": "请输入管理员密码"
+    }
+  },
+  "saveUrlForm": {
+    "url": {
+      "placeholder": "请输入要缩短的URL"
+    },
+    "key": {
+      "label": "自定义Key",
+      "placeholder": "请输入自定义Key"
+    },
+    "expireDay": {
+      "label": "有效天数",
+      "value-1": "1天有效",
+      "value-day": "{day}天有效",
+      "value-forever": "永久有效"
+    },
+    "options": {
+      "responseMode": {
+        "label": "响应模式",
+        "value-redirect": "重定向",
+        "value-manual": "手动点击链接",
+        "value-proxy": "代理"
+      },
+      "proxyOptions": {
+        "label": "代理选项",
+        "method": {
+          "label": "Method"
+        },
+        "url": {
+          "label": "URL"
+        },
+        "headers": {
+          "label": "Headers",
+          "key-placeholder": "Key",
+          "value-placeholder": "Value"
+        },
+        "body": {
+          "label": "Body"
+        },
+        "allowOrigin": {
+          "label": "跨域响应"
+        }
+      }
+    },
+    "submit": "缩短",
+    "failed": "保存失败",
+    "success": "缩短成功",
+    "success_tip": "你可以使用以下链接来访问"
+  },
+  "manualClickUrl": {
+    "title": "重定向到 {host}",
+    "tips": "将重定向到 <a href='{url}'>{url}</a>，请注意信息和财产安全。",
+    "continue": "继续"
+  },
+  "error":{
+    "401": "未登录/登录已过期",
+    "10001": "密码错误",
+    "20001": "URL不能为空",
+    "20002": "URL不合法",
+    "20003": "URL不在白名单中",
+    "20004": "自定义Key需要管理员权限",
+    "20005": "设置有效天数需要管理员权限",
+    "20006": "自定义Key已存在",
+    "20007": "生成Key失败"
+  }
+}

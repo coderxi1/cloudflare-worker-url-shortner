@@ -1,13 +1,13 @@
+import controller from './controller'
+import { Resp, code } from './utils'
+
 export default {
-	fetch(request, env) {
-		const url = new URL(request.url);
-
-		if (url.pathname.startsWith("/api/")) {
-			return Response.json({
-				name: "Cloudflare",
-			});
+	async fetch(request, env, ctx): Promise<Response> {
+		controller.use(env)
+		try {
+			return await controller.handle(new URL(request.url).pathname, request, ctx)
+		} catch (e : any) {
+			return Resp.err(e.code || code.UNKNOWN,e.message)
 		}
-
-		return env.ASSETS.fetch(request);
 	},
 } satisfies ExportedHandler<Env>;

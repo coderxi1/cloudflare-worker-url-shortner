@@ -1,0 +1,88 @@
+{
+  "title": "URL Shortener",
+  "subtitle": {
+    "login": "Login",
+    "manual": "Manual",
+    "notfound": "Page Not Found"
+  },
+  "enter": "Enter",
+  "login": "Login",
+  "login_success": "Login Successful",
+  "login_failed": "Login Failed",
+  "isLogin": "Logged In",
+  "logout": "Logout",
+  "logout_confirm": "Are you sure you want to logout?",
+  "logout_finish": "Logged Out",
+  "notfound": {
+    "title": "Page Not Found",
+    "tips": "The requested URL <span style='color:red'>{path}</span> was not found on this server. Please check and try again. If you believe this is an error, please contact the site administrator."
+  },
+  "loginForm": {
+    "password": {
+      "placeholder": "Please enter the admin password"
+    }
+  },
+  "saveUrlForm": {
+    "url": {
+      "placeholder": "Please enter the URL to shorten"
+    },
+    "key": {
+      "label": "Custom Key",
+      "placeholder": "Please enter a custom key"
+    },
+    "expireDay": {
+      "label": "Validity Days",
+      "value-1": "Valid for 1 day",
+      "value-day": "Valid for {day} days",
+      "value-forever": "Valid forever"
+    },
+    "options": {
+      "responseMode": {
+        "label": "Response Mode",
+        "value-redirect": "Redirect",
+        "value-manual": "Manual Click",
+        "value-proxy": "Proxy"
+      },
+      "proxyOptions": {
+        "label": "Proxy Options",
+        "method": {
+          "label": "Method"
+        },
+        "url": {
+          "label": "URL"
+        },
+        "headers": {
+          "label": "Headers",
+          "key-placeholder": "Key",
+          "value-placeholder": "Value"
+        },
+        "body": {
+          "label": "Body"
+        },
+        "allowOrigin": {
+          "label": "Cross-Origin Response"
+        }
+      }
+    },
+    "submit": "Shorten",
+    "failed": "Save Failed",
+    "success": "Shorten Successful",
+    "success_tip": "You can use the following link to access"
+  },
+  "manualClickUrl": {
+    "title": "Redirect to {host}",
+    "tips": "You will be redirected to <a href='{url}'>{url}</a>. Please be aware of information and property security.",
+    "continue": "Continue"
+  },
+  "error": {
+    "401": "Not Logged In/Session Expired",
+    "10001": "Incorrect password",
+    "20001": "URL cannot be empty",
+    "20002": "Invalid URL",
+    "20003": "URL not in whitelist",
+    "20004": "Custom key requires admin privileges",
+    "20005": "Setting validity days requires admin privileges",
+    "20006": "Custom key already exists",
+    "20007": "Failed to generate key"
+  }
+}

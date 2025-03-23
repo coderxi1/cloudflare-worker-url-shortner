@@ -1,0 +1,88 @@
+{
+  "title": "URL Shortener",
+  "subtitle": {
+    "login": "ログイン",
+    "manual": "手動",
+    "notfound": "ページが見つかりません"
+  },
+  "enter": "確定",
+  "login": "ログイン",
+  "login_success": "ログイン成功",
+  "login_failed": "ログイン失敗",
+  "isLogin": "ログイン済み",
+  "logout": "ログアウト",
+  "logout_confirm": "ログアウトしますか？",
+  "logout_finish": "ログアウトしました",
+  "notfound": {
+    "title": "ページが見つかりません",
+    "tips": "リクエストされたURL <span style='color:red'>{path}</span> はこのサーバー上に見つかりませんでした。確認して再試行してください。これがエラーだと思われる場合は、サイト管理者に連絡してください。"
+  },
+  "loginForm": {
+    "password": {
+      "placeholder": "管理者パスワードを入力してください"
+    }
+  },
+  "saveUrlForm": {
+    "url": {
+      "placeholder": "短縮するURLを入力してください"
+    },
+    "key": {
+      "label": "カスタムキー",
+      "placeholder": "カスタムキーを入力してください"
+    },
+    "expireDay": {
+      "label": "有効日数",
+      "value-1": "1日有効",
+      "value-day": "{day}日有効",
+      "value-forever": "永久に有効"
+    },
+    "options": {
+      "responseMode": {
+        "label": "応答モード",
+        "value-redirect": "リダイレクト",
+        "value-manual": "手動でリンクをクリック",
+        "value-proxy": "プロキシ"
+      },
+      "proxyOptions": {
+        "label": "プロキシオプション",
+        "method": {
+          "label": "メソッド"
+        },
+        "url": {
+          "label": "URL"
+        },
+        "headers": {
+          "label": "ヘッダー",
+          "key-placeholder": "キー",
+          "value-placeholder": "値"
+        },
+        "body": {
+          "label": "ボディ"
+        },
+        "allowOrigin": {
+          "label": "クロスオリジン応答"
+        }
+      }
+    },
+    "submit": "短縮",
+    "failed": "保存に失敗しました",
+    "success": "短縮に成功しました",
+    "success_tip": "以下のリンクを使用してアクセスできます"
+  },
+  "manualClickUrl": {
+    "title": "{host}にリダイレクト",
+    "tips": "<a href='{url}'>{url}</a> にリダイレクトされます。情報と財産の安全に注意してください。",
+    "continue": "続行"
+  },
+  "error": {
+    "401": "未ログイン/ログイン期限切れ",
+    "10001": "パスワードが間違っています",
+    "20001": "URLは空にできません",
+    "20002": "URLが無効です",
+    "20003": "URLがホワイトリストにありません",
+    "20004": "カスタムキーには管理者権限が必要です",
+    "20005": "有効日数の設定には管理者権限が必要です",
+    "20006": "カスタムキーは既に存在します",
+    "20007": "キーの生成に失敗しました"
+  }
+}
