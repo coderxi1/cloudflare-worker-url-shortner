@@ -4,11 +4,11 @@ const { path } = useRoute()
 </script>
 
 <template>
-  <CenterLayout>
+  <div class="center">
     <n-card :title="$t('notfound.title')">
       <p v-html="$t('notfound.tips',{path})"></p>
     </n-card>
-  </CenterLayout>
+  </div>
 </template>
 
 <style lang="scss" scoped>

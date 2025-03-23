@@ -7,14 +7,14 @@ const jumpUrl = (url:string) => location.href = url
 </script>
 
 <template>
-  <CenterLayout>
+  <div class="center">
     <n-card :title="$t('manualClickUrl.title',{host})">
       <p v-html="$t('manualClickUrl.tips',{url})"></p>
       <p style="margin-top:2rem;text-align:right;">
         <n-button @click="jumpUrl(url)">{{ $t('manualClickUrl.continue') }}</n-button>
       </p>
     </n-card>
-  </CenterLayout>
+  </div>
 </template>
 
 <style lang="scss" scoped>

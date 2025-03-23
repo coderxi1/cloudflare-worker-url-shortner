@@ -8,7 +8,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    CenterLayout: typeof import('./src/components/CenterLayout.vue')['default']
     GlobalProvider: typeof import('./src/components/GlobalProvider.vue')['default']
     Icon: typeof import('./src/components/Icon.vue')['default']
     NButton: typeof import('naive-ui')['NButton']

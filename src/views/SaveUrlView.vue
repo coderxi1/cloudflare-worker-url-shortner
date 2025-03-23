@@ -55,7 +55,7 @@ const saveUrl = async () => {
 </script>
 
 <template>
-<CenterLayout>
+<div class="center">
   <n-card>
     <h1 style="line-height: 0; font-size: 1.25rem; text-align: center;">{{ $t("title") }}</h1>
     <n-form :model="params" size="large">
@@ -127,7 +127,7 @@ const saveUrl = async () => {
       </div>
     </n-form>
   </n-card>
-</CenterLayout>
+</div>
 </template>
 
 <style lang="scss" scoped>

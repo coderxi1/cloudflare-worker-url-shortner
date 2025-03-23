@@ -37,7 +37,7 @@ const login = async () => {
 </script>
 
 <template>
-  <CenterLayout>
+  <div class="center">
     <n-card>
       <n-form ref="formRef" :model="params" size="large">
         <n-form-item path="password">
@@ -48,7 +48,7 @@ const login = async () => {
         </n-form-item>
       </n-form>
     </n-card>
-  </CenterLayout>
+  </div>
 </template>
   
 <style lang="scss" scoped>
