@@ -1,8 +1,11 @@
-[**简体中文**](https://github.com/coderxi1/cloudflare-worker-url-shortner/blob/master/README.zh.md)
+[**简体中文**](https://github.com/coderxi1/cloudflare-worker-url-shortner/blob/lite/README.zh.md)
 
 # ![](/public/favicon.ico) cloudflare-worker-url-shortner
 
-cloudflare-worker-url-shortner is a **serverless URL shortening service** built using **Cloudflare Workers**. It provides a simple and efficient way to shorten long URLs and manage redirects.
+This is a **lightweight version** that removes the **navigation, login functionality, proxy mode, and URL management page**. It is implemented using native HTML, achieving an initial response time as fast as **100ms**. 
+
+> [!IMPORTANT]
+> If you need more comprehensive features, please refer to the [**master branch**](https://github.com/coderxi1/cloudflare-worker-url-shortner).
 
 ## [Demo](https://surl.coderxi.com/)
 
@@ -29,9 +32,9 @@ cloudflare-worker-url-shortner is a **serverless URL shortening service** built 
    ![step1](https://github.com/user-attachments/assets/64ac30af-b144-4a23-9c19-d3018ce9bb58)
 2. Remember KV namespace ID
    ![step2](https://github.com/user-attachments/assets/02ef2c13-6db4-4e4f-aed2-baf4d859a376)
-3. Clone this repo and 
+3. Clone this repo and use lite branch
    ```sh
-   git clone https://github.com/coderxi1/cloudflare-worker-url-shortner
+   git clone -b lite https://github.com/coderxi1/cloudflare-worker-url-shortner
    ```
 4. Install dependencies
    ```sh

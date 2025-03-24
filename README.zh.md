@@ -2,7 +2,11 @@
 
 # ![](/public/favicon.ico) cloudflare-worker-url-shortner
 
-cloudflare-worker-url-shortner 是一个使用 **Cloudflare Workers** 构建的 **无服务器 URL 缩短服务**。它提供了一种简单高效的方式来缩短长 URL 并管理重定向。
+这是一个 **轻量级版本**，移除了 **导航、登录功能、代理模式和 URL 管理页面**。  
+该版本使用原生 HTML 实现，首次响应速度可达 **100ms**。  
+
+> [!IMPORTANT]  
+> 如果你需要更加全面的功能，请参见 [**master 分支**](https://github.com/coderxi1/cloudflare-worker-url-shortner)。
 
 ## [演示](https://surl.coderxi.com/)
 
@@ -28,9 +32,9 @@ cloudflare-worker-url-shortner 是一个使用 **Cloudflare Workers** 构建的 
    ![步骤1](https://github.com/user-attachments/assets/64ac30af-b144-4a23-9c19-d3018ce9bb58)
 2. 记住 KV 命名空间 ID  
    ![步骤2](https://github.com/user-attachments/assets/02ef2c13-6db4-4e4f-aed2-baf4d859a376)
-3. 克隆此仓库  
+3. 克隆此仓库的lite分支  
    ```sh
-   git clone https://github.com/coderxi1/cloudflare-worker-url-shortner
+   git clone -b lite https://github.com/coderxi1/cloudflare-worker-url-shortner
    ```
 4. 安装依赖  
    ```sh
