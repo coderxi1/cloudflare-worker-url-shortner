@@ -1,28 +1,14 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { useStatusStore } from '@/stores/status';
 const statusStore = useStatusStore();
 // theme
-import { lightThemeOverrides, darkThemeOverrides} from '@/theme'
-import { lightTheme, darkTheme, type GlobalTheme, type GlobalThemeOverrides } from 'naive-ui'
-const theme = ref<GlobalTheme|null>()
-const themeOverrides = ref<GlobalThemeOverrides>()
-watch(() => statusStore.theme, (themeTo) => {
-  if (themeTo == 'auto') {
-    themeTo = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  }
-  if (themeTo == 'light') {
-    theme.value = lightTheme
-    themeOverrides.value = lightThemeOverrides
-  } else {
-    theme.value = darkTheme
-    themeOverrides.value = darkThemeOverrides
-  }
-  document.documentElement.className = themeTo
-},{immediate: true})
+import { theme, themeOverrides, switchTheme } from '@/theme'
+watch(() => useStatusStore().theme, switchTheme,{immediate: true})
 // i18n
 import { useI18n } from 'vue-i18n';
 import { zhCN, enUS, jaJP, type NLocale } from 'naive-ui'
-import { useRoute } from 'vue-router';
+
 const locale = ref<NLocale>(zhCN)
 const { locale: i18nLocale, t } = useI18n()
 watch(() => statusStore.siteLang, (lang) => {

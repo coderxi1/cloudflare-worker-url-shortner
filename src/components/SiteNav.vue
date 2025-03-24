@@ -17,7 +17,8 @@ const switchTheme = () => {
 };
 
 const menuSelectOptions: SelectOption[] = [
-  { label: t("logout"), key: "logout" }
+  { label: t("subtitle.listUrl"), key: "listUrl" },
+  { label: t("logout"), key: "logout" },
 ]
 const menuSelectActions = {
   login() {
@@ -35,6 +36,9 @@ const menuSelectActions = {
         await router.push("/login")
       }
     })
+  },
+  listUrl() {
+    router.push("/urls")
   }
 }
 </script>
@@ -83,6 +87,11 @@ nav {
   left: 0;
   z-index: 999;
   width: 100%;
+  background: #f0f2f4;
+  height: 100px;
+  .dark & {
+    background: #191919;
+  }
   .nav-content {
     display: flex;
     align-items: center;

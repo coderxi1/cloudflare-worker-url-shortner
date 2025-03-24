@@ -18,7 +18,7 @@ const getUrl = async (key: string)  => {
   }
 }
 
-const saveUrl = async (role:string, params: SaveUrlRequestParams) : Promise<{ key: string; }>  => {
+const saveUrl = async (role:string, params: SaveUrlRequestParams) : Promise<string>  => {
 
   const { url, key: customKey, expireDay = 1, options } = params
   const expireSeconds = expireDay * 24 * 60 * 60
@@ -55,8 +55,34 @@ const saveUrl = async (role:string, params: SaveUrlRequestParams) : Promise<{ ke
 
   await kv.put(key, value, env.KEY_REMOVE || expireDay > 0 ? { expirationTtl: expireSeconds } : undefined).catch(e=>new RespError(code.UNKNOWN,e.message))
 
-  return { key }
+  return key
 
 }
 
-export default { use, getUrl, saveUrl }
+const listUrls = async (role: string, pn:number = 1, ps:number = 20) => {
+  assert(pn>0,code.LIST_KEY_ERROR_PN)
+  assert(ps>0,code.LIST_KEY_ERROR_PS)
+  assert(role == 'admin', code.LIST_KEY_NEED_ADMIN)
+  const kv_list = await kv.list()
+  const kv_keys = kv_list.keys.slice((pn - 1) * ps, pn * ps)
+  const data = await Promise.all(kv_keys.map(async ({name:key}) => {
+    const value = await kv.get(key)
+    const [saveTime, expireTime, url, optionsJson] = value!.split('|', 4)
+    return {
+      key, saveTime, expireTime, url,
+      options: optionsJson ? JSON.parse(optionsJson) : null
+    }
+  }))
+  return {
+    data,
+    total: kv_list.keys.length
+  }
+}
+
+const deleteUrl = async (role: string, key: string | null) => {
+  assert(key, code.DELETE_NO_KEY)
+  assert(role == 'admin', code.DELETE_KEY_NEED_ADMIN)
+  await kv.delete(key!)
+}
+
+export default { use, getUrl, saveUrl, listUrls, deleteUrl }

@@ -40,4 +40,16 @@ export const stringfyOptions = (options: SaveUrlRequestParams['options']) : stri
   return JSON.stringify(options)
 }
 
+import jwt, { JwtPayload } from "@tsndr/cloudflare-worker-jwt"
+export const tokenReader = async (request: Request, env: Env) => {
+  const token = request.headers.get("Authorization")
+  const valid = token ? await jwt.verify(token, env.PASSWORD_SECRET_KEY).catch(_=> undefined) : undefined
+  const payload = (valid && valid.payload ? valid.payload : {}) as JwtPayload & {
+    role: 'anonymous' | 'admin' | string
+  }
+  return { token, valid, payload }
+}
 
+export const searchParams = (request: Request) => {
+  return Object.fromEntries(new URLSearchParams(request.url.slice(request.url.indexOf("?"))).entries())
+}

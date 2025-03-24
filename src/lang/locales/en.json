@@ -3,9 +3,12 @@
   "subtitle": {
     "login": "Login",
     "manual": "Manual",
-    "notfound": "Page Not Found"
+    "notfound": "Page Not Found",
+    "listUrl": "Manage URLs"
   },
+  "action": "Actoin",
   "enter": "Enter",
+  "cancel": "Cancel",
   "login": "Login",
   "login_success": "Login Successful",
   "login_failed": "Login Failed",
@@ -23,6 +26,7 @@
     }
   },
   "saveUrlForm": {
+    "label": "Add Short URL",
     "url": {
       "placeholder": "Please enter the URL to shorten"
     },
@@ -68,6 +72,15 @@
     "failed": "Save Failed",
     "success": "Shorten Successful",
     "success_tip": "You can use the following link to access"
+  },
+  "saveTime": "Creation Time",
+  "expireTime": "Expiration Time",
+  "deleteUrl": {
+    "btn": "Delete",
+    "title": "Delete Short URL",
+    "confirm": "Are you sure you want to delete this short URL?",
+    "finish": "Short URL deleted",
+    "failed": "Delete failed"
   },
   "manualClickUrl": {
     "title": "Redirect to {host}",

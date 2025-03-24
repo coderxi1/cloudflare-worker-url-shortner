@@ -15,6 +15,12 @@ const router = createRouter({
       meta: { subtitle: 'subtitle.login' }
     },
     {
+      path: '/urls',
+      name: 'ListUrl',
+      component: () => import('../views/ListUrlView.vue'),
+      meta: { subtitle: 'subtitle.listUrl' }
+    },
+    {
       path: '/jump',
       name: 'ManualClickUrl',
       component: () => import('../views/ManualClickUrlView.vue'),

@@ -3,9 +3,12 @@
   "subtitle": {
     "login": "登录",
     "manual": "跳转",
-    "notfound": "页面未找到"
+    "notfound": "页面未找到",
+    "listUrl": "URL管理"
   },
+  "action": "操作",
   "enter": "确定",
+  "cancel": "取消",
   "login": "登录",
   "login_success": "登录成功",
   "login_failed": "登录失败",
@@ -23,6 +26,7 @@
     }
   },
   "saveUrlForm": {
+    "label": "添加短链接",
     "url": {
       "placeholder": "请输入要缩短的URL"
     },
@@ -73,6 +77,15 @@
     "title": "重定向到 {host}",
     "tips": "将重定向到 <a href='{url}'>{url}</a>，请注意信息和财产安全。",
     "continue": "继续"
+  },
+  "saveTime": "创建时间",
+  "expireTime": "到期时间",
+  "deleteUrl": {
+    "btn": "删除",
+    "title": "删除短链接",
+    "confirm": "确定删除该短链接吗？",
+    "finish": "短链接已删除",
+    "failed": "删除失败" 
   },
   "error":{
     "401": "未登录/登录已过期",

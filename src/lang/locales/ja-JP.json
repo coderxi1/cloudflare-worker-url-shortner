@@ -3,9 +3,12 @@
   "subtitle": {
     "login": "ログイン",
     "manual": "手動",
-    "notfound": "ページが見つかりません"
+    "notfound": "ページが見つかりません",
+    "listUrl": "URL管理"
   },
+  "action": "アクション",
   "enter": "確定",
+  "cancel": "キャンセル",
   "login": "ログイン",
   "login_success": "ログイン成功",
   "login_failed": "ログイン失敗",
@@ -23,6 +26,7 @@
     }
   },
   "saveUrlForm": {
+    "label": "短縮URLを追加",
     "url": {
       "placeholder": "短縮するURLを入力してください"
     },
@@ -68,6 +72,15 @@
     "failed": "保存に失敗しました",
     "success": "短縮に成功しました",
     "success_tip": "以下のリンクを使用してアクセスできます"
+  },
+  "saveTime": "作成時間",
+  "expireTime": "有効期限",
+  "deleteUrl": {
+    "btn": "削除",
+    "title": "短縮URLを削除",
+    "confirm": "この短縮URLを削除してもよろしいですか？",
+    "finish": "短縮URLが削除されました",
+    "failed": "削除に失敗しました"
   },
   "manualClickUrl": {
     "title": "{host}にリダイレクト",

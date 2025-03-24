@@ -1,6 +1,6 @@
 import service from './service'
 import jwt from "@tsndr/cloudflare-worker-jwt"
-import { Resp, assert, code } from "./utils"
+import { Resp, assert, code, tokenReader, searchParams } from "./utils"
 import { LoginRequestParams, SaveUrlRequestParams } from "../types/request"
 
 let env: Env
@@ -9,26 +9,17 @@ const use = (fenv: Env) => { if(!env) {env = fenv ; service.use(env) } }
 
 const spa = (request: Request) => env.ASSETS.fetch(request)
 
-const jwtCheck = async (request: Request) => {
-  const token = request.headers.get("Authorization")
-  if (!token || !(await jwt.verify(token!, env.PASSWORD_SECRET_KEY).catch(_=>false))) {
-    return false
-  }
-  return jwt.decode(token)
-}
-
 const login = async ({password}: LoginRequestParams) => {
   if (password !== env.PASSWORD) 
     return Resp.err(code.PASSWORD_WRONG)
   const exp = Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60)
-  const token = await jwt.sign({role:"admin",exp}, env.PASSWORD_SECRET_KEY);
-  return Resp.json({token})
+  return Resp.json({token:await jwt.sign({role:"admin",exp}, env.PASSWORD_SECRET_KEY)})
 }
 
 const handle = async (path: string, request: Request, ctx: ExecutionContext): Promise<Response> => {
   const { method } = request
 
-  if (["/","/login","/favicon.ico"].includes(path)) {
+  if (["/","/login","/urls","/favicon.ico"].includes(path)) {
     return spa(request)
   }
 
@@ -37,11 +28,28 @@ const handle = async (path: string, request: Request, ctx: ExecutionContext): Pr
   }
   
   if (path == "/api/url") {
-    const jwtCheckResult = await jwtCheck(request)
-    env.PASSWORD_REQUIRE && assert(jwtCheckResult, 401, "Unauthorized")
-    const role = !jwtCheckResult ? 'user' : ((jwtCheckResult.payload as any).role || 'user')
-    const params = await request.json<SaveUrlRequestParams>()
-    return Resp.json({key:(await service.saveUrl(role, params)).key})
+    const token = await tokenReader(request,env)
+    assert(!env.PASSWORD_REQUIRE || token.valid, code.HTTP_UNAUTHORIZED)
+    const {role} = token.payload
+    if (method == "POST") {
+      const params = await request.json<SaveUrlRequestParams>()
+      const key = await service.saveUrl(role, params)
+      return Resp.json({key})
+    }
+    if (method == 'DELETE') {
+      const {key} = searchParams(request)
+      await service.deleteUrl(role, key)
+      return Resp.json({key})
+    }
+    return Resp.err(code.HTTP_METHOD_NOT_ALLOWED)
+  }
+
+  if (path == "/api/urls" && method == "GET") {
+    const token = await tokenReader(request,env)
+    assert(!env.PASSWORD_REQUIRE || token.valid, code.HTTP_UNAUTHORIZED)
+    const {role} = token.payload
+    const {pn = '1', ps = '10'} = searchParams(request)
+    return Resp.json(await service.listUrls(role,parseInt(pn), parseInt(ps)))
   }
 
   if (method == "GET") {

@@ -26,11 +26,6 @@ const jumpUrl = (url:string) => location.href = url
 </style>
 
 <style>
-a {
-  color: #0078F9;
-  text-decoration: none;
-}
-
 .n-button:active * {
   color: #0078F9;
   transition: color .2s;

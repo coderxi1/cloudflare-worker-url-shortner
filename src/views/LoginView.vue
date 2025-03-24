@@ -30,7 +30,7 @@ const login = async () => {
     })
     statusStore.token = data.token
     statusStore.isLogin = true
-    router.push('/')
+    router.push(router.currentRoute.value.query.redirect as string||'/')
   }
 }
 

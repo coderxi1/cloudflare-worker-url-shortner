@@ -1,47 +1,20 @@
-import { type GlobalThemeOverrides } from 'naive-ui'
+import type { GlobalTheme, GlobalThemeOverrides } from "naive-ui";
+import { lightThemeOverrides, darkThemeOverrides } from "./overrides";
+import { lightTheme, darkTheme } from "naive-ui";
 
-export const lightThemeOverrides: GlobalThemeOverrides = {
-  common: {
-    bodyColor: '#f0f2f4',
-    primaryColor: '#0078F9',
-    primaryColorHover: '#0078F9',
-    primaryColorPressed: '#00408d',
-  },
-  Card: {
-    color: '#fff',
-    borderRadius: '8px',
-    borderColor: 'tranparent'
-  },
-  Switch: {
-    railColorActive: '#0078F9'
-  },
-  Input: {
-    color: '#F9F9F9',
-    border: 'solid 1px #ddd',
-    borderHover: 'solid 1px #ddd',
-    
-  }
+const themes = {
+  light: { theme: lightTheme, overrides: lightThemeOverrides },
+  dark: { theme: darkTheme, overrides: darkThemeOverrides },
 }
 
-export const darkThemeOverrides: GlobalThemeOverrides = {
-  common: {
-    bodyColor: '#191919',
-    primaryColor: '#0078F9',
-    primaryColorHover: '#0078F9',
-    primaryColorPressed: '#00408d',
-  },
-  Card: {
-    color: '#1e1e1f',
-    borderRadius: '8px',
-    borderColor: 'tranparent'
-  },
-  Switch: {
-    railColorActive: '#0078F9'
-  },
-  Input: {
-    color: '#1a1a1a',
-    border: 'solid 1px #333',
-    borderHover: 'solid 1px #333',
-    borderRadius: '5px'
-  }
+const theme = ref<GlobalTheme>()
+const themeOverrides = ref<GlobalThemeOverrides>()
+
+const switchTheme = (to : "light" | "dark" | "auto") => {
+  to = to=='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light':to
+  theme.value = themes[to].theme
+  themeOverrides.value = themes[to].overrides
+  document.documentElement.className = to
 }
+
+export { themes, theme, themeOverrides, switchTheme };

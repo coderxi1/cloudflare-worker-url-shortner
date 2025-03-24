@@ -7,6 +7,17 @@ import { RouterView } from 'vue-router'
 <template>
   <GlobalProvider>
     <SiteNav />
-    <RouterView />
+    <div class="main-container">
+      <RouterView />
+    </div>
   </GlobalProvider>
 </template>
+
+<style>
+.main-container{
+  padding-top: 100px;
+  height: calc(100vh - 100px);
+  max-height: 100vh;
+  max-width: 100vw;
+}
+</style>
