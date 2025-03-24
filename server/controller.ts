@@ -63,8 +63,16 @@ const handle = async (path: string, request: Request, ctx: ExecutionContext): Pr
           headers: proxyOptions?.headers ?? {},
           body: proxyOptions?.body
         })
-        proxyOptions?.allowOrigin && proxyResponse.headers.set('Access-Control-Allow-Origin', '*')
-        return proxyResponse
+        return !proxyOptions?.allowOrigin
+          ? proxyResponse
+          : new Response(await proxyResponse.text(), {
+              status: proxyResponse.status,
+              statusText: proxyResponse.statusText,
+              headers: {
+                ...Object.fromEntries(proxyResponse.headers.entries()),
+                'Access-Control-Allow-Origin': '*'
+              }
+            })
       }
     }
   }
