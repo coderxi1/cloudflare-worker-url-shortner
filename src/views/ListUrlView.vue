@@ -62,6 +62,8 @@ const deleteUrl = (key: string, index: number) => {
   })
 }
 
+const timeformat = (date:Date) => date.toISOString().slice(0, 16).replace("T", " ")
+
 const columns = [
   { 
     title: "No.",
@@ -79,13 +81,13 @@ const columns = [
     title:  t('saveTime'), 
     key: 'expireTime', 
     align: 'center',
-    render: row => h('span',{ class: 'time' },{default:()=>new Date(Number(row.saveTime)).toLocaleString()} )
+    render: row => h('span',{ class: 'time' },{default:()=>timeformat(new Date(Number(row.saveTime)))} )
   },
   { 
     title: t('expireTime'), 
     key: 'expireTime', 
     align: 'center',
-    render: row => h('span',{ class: 'time' },{default:()=>row.expireTime != '-1' ? new Date(Number(row.expireTime)).toLocaleString() : t("saveUrlForm.expireDay.value-forever")} )
+    render: row => h('span',{ class: 'time' },{default:()=>row.expireTime != '-1' ? timeformat(new Date(Number(row.expireTime))) : t("saveUrlForm.expireDay.value-forever")} )
   },
   { 
     title: 'URL', 
@@ -130,12 +132,7 @@ const columns = [
     overflow-wrap: break-word;
   }
 }
-.time {
-  width: 8em;
-  display: block;
-  white-space: nowrap;
-}
-.row-key {
+.time,.row-key {
   display: block;
   white-space: nowrap;
 }
