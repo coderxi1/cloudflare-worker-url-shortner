@@ -53,7 +53,7 @@ const saveUrl = async (role:string, params: SaveUrlRequestParams) : Promise<stri
   const saveTime = Date.now() , expireTime = expireDay <= 0 ? -1 : saveTime + expireSeconds * 1000
   const value = [saveTime, expireTime, url.replace('|','%7C'), stringfyOptions(options)].join('|')
 
-  await kv.put(key, value, env.KEY_REMOVE || expireDay > 0 ? { expirationTtl: expireSeconds } : undefined).catch(e=>new RespError(code.UNKNOWN,e.message))
+  await kv.put(key, value, env.KEY_REMOVE && expireDay > 0 ? { expirationTtl: expireSeconds } : undefined).catch(e=>new RespError(code.UNKNOWN,e.message))
 
   return key
 
