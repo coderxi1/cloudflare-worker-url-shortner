@@ -5,7 +5,7 @@ export const useStatusStore = defineStore(
   () => ({
     token: ref<string|undefined>(),
     isLogin: ref(false),
-    siteLang: ref<"zh-CN" | "en" | "ja-JP">("zh-CN"),
+    siteLang: ref<"zh-CN" | "zh-TW" | "en" | "ja-JP">("zh-CN"),
     theme: ref<"light" | "dark" | "auto">("auto"),
   }),
   {
