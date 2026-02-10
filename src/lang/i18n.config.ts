@@ -1,5 +1,6 @@
 import type { SelectOption } from "naive-ui";
 import zh from "./locales/zh-CN.json";
+import zhTW from "./locales/zh-TW.json";
 import en from "./locales/en.json";
 import jp from "./locales/ja-JP.json";
 
@@ -10,6 +11,7 @@ const i18n = createI18n(({
   locale: "zh-CN",
   messages: {
     "zh-CN": zh,
+    "zh-TW": zhTW,
     "en": en,
     "ja-JP": jp
   },
@@ -20,6 +22,10 @@ const i18nSelectOptions : SelectOption[] = [
   {
     label: "简体中文",
     value: "zh-CN",
+  },
+  {
+    label: "繁體中文",
+    value: "zh-TW",
   },
   {
     label: "English",

@@ -1,0 +1,101 @@
+{
+  "title": "Url Shortner",
+  "subtitle": {
+    "login": "登入",
+    "manual": "跳轉",
+    "notfound": "頁面未找到",
+    "listUrl": "URL管理"
+  },
+  "action": "操作",
+  "enter": "確定",
+  "cancel": "取消",
+  "login": "登入",
+  "login_success": "登入成功",
+  "login_failed": "登入失敗",
+  "isLogin": "已登入",
+  "logout": "登出",
+  "logout_confirm": "確定登出嗎？",
+  "logout_finish": "已登出",
+  "notfound": {
+    "title": "頁面未找到",
+    "tips": "請求的 URL <span style='color:red'>{path}</span> 在此伺服器上未找到，請檢查後再試。如果你認為這是一個錯誤，請聯絡網站管理員。"
+  },
+  "loginForm": {
+    "password": {
+      "placeholder": "請輸入管理員密碼"
+    }
+  },
+  "saveUrlForm": {
+    "label": "新增短連結",
+    "url": {
+      "placeholder": "請輸入要縮短的URL"
+    },
+    "key": {
+      "label": "自訂Key",
+      "placeholder": "請輸入自訂Key"
+    },
+    "expireDay": {
+      "label": "有效天數",
+      "value-1": "1天有效",
+      "value-day": "{day}天有效",
+      "value-forever": "永久有效"
+    },
+    "options": {
+      "responseMode": {
+        "label": "回應模式",
+        "value-redirect": "重新導向",
+        "value-manual": "手動點擊連結",
+        "value-proxy": "代理"
+      },
+      "proxyOptions": {
+        "label": "代理選項",
+        "method": {
+          "label": "Method"
+        },
+        "url": {
+          "label": "URL"
+        },
+        "headers": {
+          "label": "Headers",
+          "key-placeholder": "Key",
+          "value-placeholder": "Value"
+        },
+        "body": {
+          "label": "Body"
+        },
+        "allowOrigin": {
+          "label": "跨域回應"
+        }
+      }
+    },
+    "submit": "縮短",
+    "failed": "儲存失敗",
+    "success": "縮短成功",
+    "success_tip": "你可以使用以下連結來存取"
+  },
+  "manualClickUrl": {
+    "title": "重新導向到 {host}",
+    "tips": "將重新導向到 <a href='{url}'>{url}</a>，請注意資訊和財產安全。",
+    "continue": "繼續"
+  },
+  "saveTime": "建立時間",
+  "expireTime": "到期時間",
+  "deleteUrl": {
+    "btn": "刪除",
+    "title": "刪除短連結",
+    "confirm": "確定刪除該短連結嗎？",
+    "finish": "短連結已刪除",
+    "failed": "刪除失敗" 
+  },
+  "error":{
+    "401": "未登入/登入已過期",
+    "10001": "密碼錯誤",
+    "20001": "URL不能為空",
+    "20002": "URL不合法",
+    "20003": "URL不在白名單中",
+    "20004": "自訂Key需要管理員權限",
+    "20005": "設定有效天數需要管理員權限",
+    "20006": "自訂Key已存在",
+    "20007": "產生Key失敗"
+  }
+}
