@@ -28,6 +28,7 @@ const handleError = (code:number,e?: Error) => {
     const msg = (() => {
       switch (statusStore.siteLang) {
         case "zh-CN" : return {title:"请求失败",description: "未登录/登录已过期"}
+        case "zh-TW" : return {title:"請求失敗",description: "未登入/登入已過期"}
         case "en" : return {title:"Request Failed",description: "Not Logged In/Session Expired"}
         case "ja-JP" : return {title:"リクエストに失敗しました",description: "未ログイン/ログイン期限切れ"}
       }
